@@ -1,0 +1,1067 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-cordova-hot-code-push-plugin/node_modules/cordova-hot-code-push-plugin/www/chcp.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-cordova-hot-code-push-plugin">npmtest-cordova-hot-code-push-plugin (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-cordova-hot-code-push-plugin/node_modules/cordova-hot-code-push-plugin/www/chcp.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">9.38% <small>(6 / 64)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 34)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">9.38% <small>(6 / 64)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-cordova-hot-code-push-plugin/node_modules/cordova-hot-code-push-plugin/www/</a> &#187; chcp.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+&nbsp;
+var exec = require('cordova/exec'),
+  channel = require('cordova/channel'),
+&nbsp;
+  // Reference name for the plugin
+  PLUGIN_NAME = 'HotCodePush',
+&nbsp;
+  // Plugin methods on the native side that can be called from JavaScript
+  pluginNativeMethod = {
+    INITIALIZE: 'jsInitPlugin',
+    FETCH_UPDATE: 'jsFetchUpdate',
+    INSTALL_UPDATE: 'jsInstallUpdate',
+    CONFIGURE: 'jsConfigure',
+    REQUEST_APP_UPDATE: 'jsRequestAppUpdate',
+    IS_UPDATE_AVAILABLE_FOR_INSTALLATION: 'jsIsUpdateAvailableForInstallation',
+    GET_INFO: 'jsGetVersionInfo'
+  };
+&nbsp;
+// Called when Cordova is ready for work.
+// Here we will send default callback to the native side through which it will send to us different events.
+<span class="cstat-no" title="statement not covered" >channel.onCordovaReady.subscribe(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >  ensureCustomEventExists();</span>
+<span class="cstat-no" title="statement not covered" >  exec(nativeCallback, null, PLUGIN_NAME, pluginNativeMethod.INITIALIZE, []);</span>
+});
+&nbsp;
+/**
+ * Method is called when native side sends us different events.
+ * Those events can be about update download/installation process.
+ *
+ * @param {String} msg - JSON formatted string with call arguments
+ */
+<span class="fstat-no" title="function not covered" >function nativeCallback(msg) {</span>
+  // parse call arguments
+<span class="cstat-no" title="statement not covered" >  var resultObj = processMessageFromNative(msg);</span>
+<span class="cstat-no" title="statement not covered" >  if (resultObj.action == null) {</span>
+<span class="cstat-no" title="statement not covered" >    console.log('Action is not provided, skipping');</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  broadcastEventFromNative(resultObj);</span>
+}
+&nbsp;
+/**
+ * Parse arguments that were sent from the native side.
+ * Arguments are a JSON string of type:
+ * { action: "action identifier", error: {...error data...}, data: {...some additional data..} }
+ * Some parameters may not exist, but the resulting object will have them all.
+ *
+ * @param {String} msg - arguments as JSON string
+ * @return {Object} parsed string
+ */
+<span class="fstat-no" title="function not covered" >function processMessageFromNative(msg) {</span>
+<span class="cstat-no" title="statement not covered" >  var errorContent = null,</span>
+    dataContent = null,
+    actionId = null;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    var resultObj = JSON.parse(msg);</span>
+<span class="cstat-no" title="statement not covered" >    if (resultObj.hasOwnProperty('error')) {</span>
+<span class="cstat-no" title="statement not covered" >      errorContent = resultObj.error;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (resultObj.hasOwnProperty('data')) {</span>
+<span class="cstat-no" title="statement not covered" >      dataContent = resultObj.data;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    if (resultObj.hasOwnProperty('action')) {</span>
+<span class="cstat-no" title="statement not covered" >      actionId = resultObj.action;</span>
+    }
+  } catch (err) {}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    action: actionId,
+    error: errorContent,
+    data: dataContent
+  };
+}
+&nbsp;
+<span class="fstat-no" title="function not covered" >function callNativeMethod(methodName, options, callback) {</span>
+<span class="cstat-no" title="statement not covered" >  var innerCallback = <span class="fstat-no" title="function not covered" >function(msg) {</span></span>
+<span class="cstat-no" title="statement not covered" >    var resultObj = processMessageFromNative(msg);</span>
+<span class="cstat-no" title="statement not covered" >    if (callback !== undefined &amp;&amp; callback != null) {</span>
+<span class="cstat-no" title="statement not covered" >      callback(resultObj.error, resultObj.data);</span>
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var sendArgs = [];</span>
+<span class="cstat-no" title="statement not covered" >  if (options !== null &amp;&amp; options !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    sendArgs.push(options);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  exec(innerCallback, null, PLUGIN_NAME, methodName, sendArgs);</span>
+}
+&nbsp;
+// region Update/Install events
+&nbsp;
+/*
+ * Polyfill for adding CustomEvent which may not exist on older versions of Android.
+ * See https://developer.mozilla.org/fr/docs/Web/API/CustomEvent for more details.
+ */
+<span class="fstat-no" title="function not covered" >function ensureCustomEventExists() {</span>
+  // Create only if it doesn't exist
+<span class="cstat-no" title="statement not covered" >  if (window.CustomEvent) {</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var CustomEvent = <span class="fstat-no" title="function not covered" >function(event, params) {</span></span>
+<span class="cstat-no" title="statement not covered" >    params = params || {</span>
+      bubbles: false,
+      cancelable: false,
+      detail: undefined
+    };
+<span class="cstat-no" title="statement not covered" >    var evt = document.createEvent('CustomEvent');</span>
+<span class="cstat-no" title="statement not covered" >    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);</span>
+<span class="cstat-no" title="statement not covered" >    return evt;</span>
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  CustomEvent.prototype = window.Event.prototype;</span>
+<span class="cstat-no" title="statement not covered" >  window.CustomEvent = CustomEvent;</span>
+}
+&nbsp;
+/**
+ * Broadcast event that was received from the native side.
+ *
+ * @param {Object} arguments, received from the native side
+ */
+<span class="fstat-no" title="function not covered" >function broadcastEventFromNative(nativeMessage) {</span>
+<span class="cstat-no" title="statement not covered" >  var params = {};</span>
+<span class="cstat-no" title="statement not covered" >  if (nativeMessage.error != null) {</span>
+<span class="cstat-no" title="statement not covered" >    params.error = nativeMessage.error;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var chcpEvent = new CustomEvent(nativeMessage.action, {</span>
+    'detail': params
+  });
+<span class="cstat-no" title="statement not covered" >  document.dispatchEvent(chcpEvent);</span>
+}
+&nbsp;
+// endregion
+&nbsp;
+/**
+ * Public module of the plugin.
+ * May be used by developers to send commands to the plugin.
+ */
+<span class="cstat-no" title="statement not covered" >var chcp = {</span>
+&nbsp;
+  // Plugin error codes
+  error: {
+    NOTHING_TO_INSTALL: 1,
+    NOTHING_TO_UPDATE: 2,
+&nbsp;
+    FAILED_TO_DOWNLOAD_APPLICATION_CONFIG: -1,
+    APPLICATION_BUILD_VERSION_TOO_LOW: -2,
+    FAILED_TO_DOWNLOAD_CONTENT_MANIFEST: -3,
+    FAILED_TO_DOWNLOAD_UPDATE_FILES: -4,
+    FAILED_TO_MOVE_LOADED_FILES_TO_INSTALLATION_FOLDER: -5,
+    UPDATE_IS_INVALID: -6,
+    FAILED_TO_COPY_FILES_FROM_PREVIOUS_RELEASE: -7,
+    FAILED_TO_COPY_NEW_CONTENT_FILES: -8,
+    LOCAL_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND: -9,
+    LOCAL_VERSION_OF_MANIFEST_NOT_FOUND: -10,
+    LOADED_VERSION_OF_APPLICATION_CONFIG_NOT_FOUND: -11,
+    LOADED_VERSION_OF_MANIFEST_NOT_FOUND: -12,
+    FAILED_TO_INSTALL_ASSETS_ON_EXTERNAL_STORAGE: -13,
+    CANT_INSTALL_WHILE_DOWNLOAD_IN_PROGRESS: -14,
+    CANT_DOWNLOAD_UPDATE_WHILE_INSTALLATION_IN_PROGRESS: -15,
+    INSTALLATION_ALREADY_IN_PROGRESS: -16,
+    DOWNLOAD_ALREADY_IN_PROGRESS: -17,
+    ASSETS_FOLDER_IN_NOT_YET_INSTALLED: -18,
+    NEW_APPLICATION_CONFIG_IS_INVALID: -19
+  },
+&nbsp;
+  // Plugin events
+  event: {
+    BEFORE_ASSETS_INSTALLATION: 'chcp_beforeAssetsInstalledOnExternalStorage',
+    ASSETS_INSTALLATION_FAILED: 'chcp_assetsInstallationError',
+    ASSETS_INSTALLED: 'chcp_assetsInstalledOnExternalStorage',
+&nbsp;
+    NOTHING_TO_UPDATE: 'chcp_nothingToUpdate',
+    UPDATE_LOAD_FAILED: 'chcp_updateLoadFailed',
+    UPDATE_IS_READY_TO_INSTALL: 'chcp_updateIsReadyToInstall',
+&nbsp;
+    BEFORE_UPDATE_INSTALLATION: 'chcp_beforeInstall',
+    UPDATE_INSTALLATION_FAILED: 'chcp_updateInstallFailed',
+    UPDATE_INSTALLED: 'chcp_updateInstalled',
+    NOTHING_TO_INSTALL: 'chcp_nothingToInstall'
+  },
+&nbsp;
+  /**
+   * DEPRECATED! WILL BE REMOVED EVENTUALLY!
+   *
+   * If you want to set config-url - use chcp.fetchUpdate(callback, options).
+   * If you want to set auto-download/auto-install preference - do it in config.xml instead of this method.
+   *
+   * Set plugin options.
+   * Options are send to the native side.
+   * As soon as they are processed - callback is called.
+   *
+   * @param {Object} options - options to set
+   * @param {Callback(error)} callback - callback to call when options are set
+   */
+  configure: <span class="fstat-no" title="function not covered" >function(options, callback) {</span>
+<span class="cstat-no" title="statement not covered" >    if (options === undefined || options == null) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    callNativeMethod(pluginNativeMethod.CONFIGURE, options, callback);</span>
+  },
+&nbsp;
+  /**
+   * Show dialog with the request to update application through the Store (App Store or Google Play).
+   * For that purpose you can use any other cordova library, this is just a small helper method.
+   *
+   * @param {String} message - message to show in the dialog
+   * @param {Callback()} onStoreOpenCallback - called when user redirects to the Store
+   * @param {Callback()} onUserDismissedDialogCallback - called when user declines to go to the Store
+   */
+  requestApplicationUpdate: <span class="fstat-no" title="function not covered" >function(message, onStoreOpenCallback, onUserDismissedDialogCallback) {</span>
+<span class="cstat-no" title="statement not covered" >    if (message == undefined || message.length == 0) {</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var onSuccessInnerCallback = <span class="fstat-no" title="function not covered" >function(msg) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (onStoreOpenCallback) {</span>
+<span class="cstat-no" title="statement not covered" >        onStoreOpenCallback();</span>
+      }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var onFailureInnerCallback = <span class="fstat-no" title="function not covered" >function(msg) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (onUserDismissedDialogCallback) {</span>
+<span class="cstat-no" title="statement not covered" >        onUserDismissedDialogCallback();</span>
+      }
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    exec(onSuccessInnerCallback, onFailureInnerCallback, PLUGIN_NAME, pluginNativeMethod.REQUEST_APP_UPDATE, [message]);</span>
+  },
+&nbsp;
+  /**
+   * Check if any new content is available on the server and download it.
+   * Usually this is done automatically by the plugin, but can be triggered at any time from the web page.
+   *
+   * @param {Callback(error, data)} callback - called when native side finished update process
+   * @param {Object} options - additional options, such as "config-url" and additional http headers.
+   */
+  fetchUpdate: <span class="fstat-no" title="function not covered" >function(callback, options) {</span>
+<span class="cstat-no" title="statement not covered" >    callNativeMethod(pluginNativeMethod.FETCH_UPDATE, options, callback);</span>
+  },
+&nbsp;
+  /**
+   * Install update if there is anything to install.
+   *
+   * @param {Callback(error)} callback - called when native side finishes installation process
+   */
+  installUpdate: <span class="fstat-no" title="function not covered" >function(callback) {</span>
+<span class="cstat-no" title="statement not covered" >    callNativeMethod(pluginNativeMethod.INSTALL_UPDATE, null, callback);</span>
+  },
+&nbsp;
+  /**
+   * Check if update was loaded and ready to be installed.
+   * If update was loaded and can be installed - "data" property of the callback will contain the name of the current version and the name of the new
+   * version.
+   * If not - "error" will contain code chcp.error.NOTHING_TO_INSTALL.
+   *
+   * @param {Callback(error, data)} callback - called, when information is retrieved from the native side.
+   */
+  isUpdateAvailableForInstallation: <span class="fstat-no" title="function not covered" >function(callback) {</span>
+<span class="cstat-no" title="statement not covered" >    callNativeMethod(pluginNativeMethod.IS_UPDATE_AVAILABLE_FOR_INSTALLATION, null, callback);</span>
+  },
+&nbsp;
+  /**
+   * Get information about the current version like current release version, app build version and so on.
+   * The "data" property of the callback will contain all the information.
+   *
+   * @param {Callback(error, data)} callback - called, when information is retrieved from the native side.
+   */
+  getVersionInfo: <span class="fstat-no" title="function not covered" >function(callback) {</span>
+<span class="cstat-no" title="statement not covered" >    callNativeMethod(pluginNativeMethod.GET_INFO, null, callback);</span>
+  }
+};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >module.exports = chcp;</span>
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Sun Apr 23 2017 13:56:16 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
